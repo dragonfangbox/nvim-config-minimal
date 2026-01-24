@@ -1,59 +1,88 @@
 vim.g.mapleader = " "
 
 -- options
-vim.opt.errorbells = false
-vim.opt.visualbell = false
+vim.o.errorbells = false
+vim.o.visualbell = false
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = false
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = false
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
 
-vim.opt.wildmenu = true
+vim.o.wildmenu = true
 
-vim.opt.wrap = false
+vim.o.wrap = false
 
-vim.opt.autoindent = true
-vim.opt.smartindent = true
+vim.o.autoindent = true
+vim.o.smartindent = true
 
-vim.opt.incsearch = true
-vim.opt.hlsearch = true
+vim.o.incsearch = true
+vim.o.hlsearch = true
 
-vim.opt.splitright = true
+vim.o.splitright = true
+
+vim.o.completeopt = "menuone,noselect,popup"
+
+vim.o.autocompletedelay = 250
 
 -- plugins
 vim.pack.add({
-	{src = "https://github.com/HoNamDuong/hybrid.nvim"},
+	{ src = "https://github.com/HoNamDuong/hybrid.nvim" },
 
-	{ 
-		src = "https://github.com/nvim-treesitter/nvim-treesitter", 
-		name = "treesitter",
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter",
 		version = "master",
 	},
 
 	{
 		src = "https://github.com/nvim-lua/plenary.nvim",
-		name = "plenary"
 	},
 
 	{
 		src = "https://github.com/nvim-telescope/telescope.nvim",
-		name = "telescope"
-	}
+	},
+
+	{
+		src = "https://github.com/neovim/nvim-lspconfig",
+	},
+
+	{
+		src = "https://github.com/mason-org/mason.nvim",
+	},
 })
 
 -- plugin config
 require("plugins.treesitter")
+require("plugins.mason")
+
+-- lsp 
+vim.lsp.config("*", {
+	capabilities = {
+		textDocument = {
+			semanticTokens = {
+				multilineTokenSupport = true,
+			}
+		}
+	},
+	on_attach = function(client, bufnr)
+		vim.lsp.completion.enable(true, client.id, bufnr, {
+			autotrigger = true,
+			convert = function(item)
+				return { abbr = item.label:gsub("%b()", "")}
+			end
+		})
+	end,
+	root_markers = { ".git" },
+})
+
+vim.lsp.enable("clangd")
+vim.lsp.enable("lua_ls")
 
 -- binds
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
-
-vim.keymap.set("n", "<leader>rc", ":luafile init.lua<CR>", { noremap = true, silent = true })
-
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", { noremap = true, silent = true })
+require("keymaps")
 
 vim.cmd("colorscheme hybrid")
