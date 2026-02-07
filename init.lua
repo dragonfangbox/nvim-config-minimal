@@ -21,7 +21,7 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 
 vim.o.incsearch = true
-vim.o.hlsearch = true
+vim.o.hlsearch = false
 
 vim.o.splitright = true
 
