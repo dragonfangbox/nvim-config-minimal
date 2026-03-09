@@ -16,6 +16,8 @@ vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", { norem
 
 vim.keymap.set("n", "<leader>ss", ":vsplit<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>nt", ":tabnew<CR>", { noremap = true, silent = true })
+
 -- omnicomplete binds
 vim.keymap.set("i", "<Tab>", function()
 	if vim.fn.pumvisible() ~= 0 then

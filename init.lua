@@ -29,6 +29,12 @@ vim.o.completeopt = "menuone,noselect,popup"
 
 vim.o.autocompletedelay = 250
 
+-- netrw
+
+vim.g.netrw_banner = 0
+vim.g.netrw_keepdir = 0
+vim.g.netrw_liststyle = 3
+
 -- plugins
 vim.pack.add({
 	{ src = "https://github.com/HoNamDuong/hybrid.nvim" },
@@ -79,8 +85,21 @@ vim.lsp.config("*", {
 	root_markers = { ".git" },
 })
 
+vim.filetype.add({
+	extension = {
+	vert = "glsl",
+    frag = "glsl",
+    tesc = "glsl",
+    tese = "glsl",
+    geom = "glsl",
+    comp = "glsl",
+	},
+})
+
 vim.lsp.enable("clangd")
 vim.lsp.enable("lua_ls")
+vim.lsp.enable("arduino_language_server")
+vim.lsp.enable("glsl_analyzer")
 
 vim.diagnostic.config({
 	virtual_text = true,
