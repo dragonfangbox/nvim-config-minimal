@@ -18,6 +18,10 @@ vim.keymap.set("n", "<leader>ss", ":vsplit<CR>", { noremap = true, silent = true
 
 vim.keymap.set("n", "<leader>nt", ":tabnew<CR>", { noremap = true, silent = true })
 
+for i = 1, 9 do
+	vim.keymap.set("n", "<leader>" .. i, i .. "gt", { noremap = true, silent = true })
+end
+
 -- omnicomplete binds
 vim.keymap.set("i", "<Tab>", function()
 	if vim.fn.pumvisible() ~= 0 then

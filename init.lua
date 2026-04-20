@@ -33,7 +33,7 @@ vim.o.autocompletedelay = 250
 
 vim.g.netrw_banner = 0
 vim.g.netrw_keepdir = 0
-vim.g.netrw_liststyle = 3
+vim.g.netrw_liststyle = 0
 
 -- plugins
 vim.pack.add({
@@ -75,24 +75,26 @@ vim.lsp.config("*", {
 		}
 	},
 	on_attach = function(client, bufnr)
-		vim.lsp.completion.enable(true, client.id, bufnr, {
-			autotrigger = true,
-			convert = function(item)
-				return { abbr = item.label:gsub("%b()", "")}
-			end
-		})
+--		vim.lsp.completion.enable(true, client.id, bufnr, {
+--			autotrigger = true,
+--			convert = function(item)
+--				return { abbr = item.label:gsub("%b()", "")}
+--			end,
+
+			vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+	--	})
 	end,
 	root_markers = { ".git" },
 })
 
 vim.filetype.add({
 	extension = {
-	vert = "glsl",
-    frag = "glsl",
-    tesc = "glsl",
-    tese = "glsl",
-    geom = "glsl",
-    comp = "glsl",
+		vert = "glsl",
+		frag = "glsl",
+		tesc = "glsl",
+		tese = "glsl",
+		geom = "glsl",
+		comp = "glsl",
 	},
 })
 
@@ -100,6 +102,7 @@ vim.lsp.enable("clangd")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("arduino_language_server")
 vim.lsp.enable("glsl_analyzer")
+vim.lsp.enable("ocaml_lsp")
 
 vim.diagnostic.config({
 	virtual_text = true,
