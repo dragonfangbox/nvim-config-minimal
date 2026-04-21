@@ -9,6 +9,8 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = false
 
+vim.o.scrolloff = 5
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -29,8 +31,9 @@ vim.o.completeopt = "menuone,noselect,popup"
 
 vim.o.autocompletedelay = 250
 
--- netrw
+vim.o.showtabline = 2
 
+-- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_keepdir = 0
 vim.g.netrw_liststyle = 0
@@ -82,6 +85,7 @@ vim.lsp.config("*", {
 --			end,
 
 			vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+			vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 	--	})
 	end,
 	root_markers = { ".git" },

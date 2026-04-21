@@ -4,19 +4,19 @@ vim.keymap.set("i", "[", "[]<Left>", { noremap = true, silent = true })
 vim.keymap.set("i", "\"", "\"\"<Left>", { noremap = true, silent = true })
 vim.keymap.set("i", "\'", "\'\'<Left>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>lc", ":luafile init.lua<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>lc", "<cmd>luafile init.lua<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>fe", ":Ex<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fe", "<cmd>Ex<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>ss", ":vsplit<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ss", "<cmd>vsplit<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>nt", ":tabnew<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>nt", "<cmd>tabnew<CR>", { noremap = true, silent = true })
 
 for i = 1, 9 do
 	vim.keymap.set("n", "<leader>" .. i, i .. "gt", { noremap = true, silent = true })
