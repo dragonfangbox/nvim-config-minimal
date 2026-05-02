@@ -78,15 +78,8 @@ vim.lsp.config("*", {
 		}
 	},
 	on_attach = function(client, bufnr)
---		vim.lsp.completion.enable(true, client.id, bufnr, {
---			autotrigger = true,
---			convert = function(item)
---				return { abbr = item.label:gsub("%b()", "")}
---			end,
-
 			vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 			vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-	--	})
 	end,
 	root_markers = { ".git" },
 })
