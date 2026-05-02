@@ -7,6 +7,7 @@ vim.keymap.set("i", "\'", "\'\'<Left>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>fg", require("telescope.builtin").grep_files, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>fe", "<cmd>Ex<CR>", { noremap = true, silent = true })
 
