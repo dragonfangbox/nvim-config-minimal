@@ -112,8 +112,10 @@ vim.lsp.enable("arduino_language_server")
 vim.lsp.enable("glsl_analyzer")
 vim.lsp.enable("ocaml_lsp")
 
+-- inline errors
 vim.diagnostic.config({
-	virtual_text = true,
+	--virtual_text = true,
+	virtual_text = false,
 })
 
 -- binds
