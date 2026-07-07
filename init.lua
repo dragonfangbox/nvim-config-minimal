@@ -27,7 +27,7 @@ vim.o.hlsearch = false
 
 vim.o.splitright = true
 
-vim.o.completeopt = "menuone,noselect,popup"
+vim.o.completeopt = "menuone,noselect"
 
 vim.o.autocompletedelay = 250
 
@@ -86,6 +86,8 @@ vim.lsp.config("*", {
 
 vim.filetype.add({
 	extension = {
+		h = "c",
+
 		vert = "glsl",
 		frag = "glsl",
 		tesc = "glsl",
