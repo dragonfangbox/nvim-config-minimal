@@ -40,7 +40,9 @@ vim.g.netrw_liststyle = 0
 
 -- plugins
 vim.pack.add({
-	{ src = "https://github.com/HoNamDuong/hybrid.nvim" },
+	{
+		src = "https://github.com/HoNamDuong/hybrid.nvim"
+	},
 
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -77,11 +79,17 @@ vim.lsp.config("*", {
 			}
 		}
 	},
-	on_attach = function(client, bufnr)
-			vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-			vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-	end,
 	root_markers = { ".git" },
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	callback = function(ev)
+		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
+		if client:supports_method('textDocument/completion') then
+			vim.lsp.completion.enable(true, client.id, ev.buf, {autotrigger = true})
+		end
+	end
 })
 
 vim.filetype.add({
@@ -98,6 +106,7 @@ vim.filetype.add({
 })
 
 vim.lsp.enable("clangd")
+vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("arduino_language_server")
 vim.lsp.enable("glsl_analyzer")

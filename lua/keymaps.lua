@@ -21,7 +21,7 @@ for i = 1, 9 do
 	vim.keymap.set("n", "<leader>" .. i, i .. "gt", { noremap = true, silent = true })
 end
 
--- omnicomplete binds
+-- autocomplete binds
 vim.keymap.set("i", "<Tab>", function()
 	if vim.fn.pumvisible() ~= 0 then
 		return vim.api.nvim_replace_termcodes("<Down>", true, false, false)
@@ -41,4 +41,6 @@ end,
 {expr = true, silent = true })
 
 -- open autocompelete menu
-vim.keymap.set("i", "<C-j>", "<C-x><C-o>", { noremap = true, silent = true, })
+vim.keymap.set("i", "<C-j>", function()
+	vim.lsp.completion.get()
+end, { noremap = true, silent = true, })
