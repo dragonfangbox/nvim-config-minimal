@@ -46,7 +46,7 @@ vim.pack.add({
 
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
-		version = "master",
+		version = "main",
 	},
 
 	{
@@ -67,7 +67,6 @@ vim.pack.add({
 })
 
 -- plugin config
-require("plugins.treesitter")
 require("plugins.mason")
 
 -- lsp 
